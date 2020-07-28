@@ -11,10 +11,6 @@ class Coupon extends Model
 {
     protected $appends = ['is_valid'];
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
     public static function findAndValidate($couponCode, $subtotal, $itemsCount)
     {
         $coupon = self::where('code_name', $couponCode)->first();

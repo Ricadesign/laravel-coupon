@@ -14,5 +14,8 @@
                 "RicaDesign\\LaravelCoupon\\LaravelCouponServiceProvider"
             ]
         }
+    },
+    "require": {
+        "laravel/framework": "^7.0"
     }
 }
