@@ -1,6 +1,6 @@
 <?php
 
-namespace RicaDesign\LaravelCoupon;
+namespace Ricadesign\LaravelCoupon;
 
 use Illuminate\Support\ServiceProvider;
 
