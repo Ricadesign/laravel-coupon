@@ -1,4 +1,4 @@
 # laravel-coupon
 Laravel package for bootstrapping couping in ecommerce sites
-##Instalation
+## Instalation
 php composer require ricadesign/laravel-coupon
