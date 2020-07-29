@@ -21,6 +21,6 @@
         }
     },
     "require": {
-        "laravel/framework": "^7.0 | ^6.0"
+        "laravel/framework": "^7.0 | ^6.0 | ^5.0"
     }
 }
