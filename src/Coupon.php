@@ -1,6 +1,6 @@
 <?php
 
-namespace Ricadesign\LaravelCoupon;
+namespace RicaDesign\LaravelCoupon;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
@@ -71,22 +71,6 @@ class Coupon extends Model
                 ['user_id' => $userId, 'coupon_id' => $this->id]
             );
         }
-    }
-
-    public function apply($order)
-    {
-        $freeShippingCoupon = $this->type === 'freesend';
-        if ($freeShippingCoupon) {
-            $order->shipment = 'free-coupon';
-        }
-        $order->coupon_id = $this->id;
-        $order->discount = $this->getDiscount($order->subtotal);
-        $order->total = $order->subtotal + ($freeShippingCoupon ? 0 : 4.95);
-        $order->total -= $order->discount;
-
-        $this->use(auth()->id());
-
-        return $order;
     }
 
     public function getDiscount($subtotal)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ricadesign\LaravelCoupon;
+namespace RicaDesign\LaravelCoupon;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class LaravelCouponServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('Ricadesign\LaravelCoupon\CouponController');
+        $this->app->make('RicaDesign\LaravelCoupon\CouponController');
     }
 
     /**
@@ -24,9 +24,8 @@ class LaravelCouponServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
-        $this->loadMigrationsFrom(__DIR__.'/migrations');
-        // $this->publishes([
-        //     __DIR__.'/Coupon.php' => app_path()
-        // ]);
+        $this->publishes([
+            __DIR__.'/migrations' => database_path('migrations'),
+        ]);
     }
 }
