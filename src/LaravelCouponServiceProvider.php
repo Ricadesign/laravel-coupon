@@ -13,7 +13,7 @@ class LaravelCouponServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('RicaDesign\LaravelCoupon\CouponController');
+        $this->app->make('Ricadesign\LaravelCoupon\CouponController');
     }
 
     /**
