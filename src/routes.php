@@ -1,3 +1,3 @@
 <?php
 
-Route::get('coupon', 'RicaDesign\LaravelCoupon\CouponController@searchCoupon')->middleware(['web', 'auth']);
+Route::get('coupon', 'Ricadesign\LaravelCoupon\CouponController@searchCoupon')->middleware(['web', 'auth']);

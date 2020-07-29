@@ -16,7 +16,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "RicaDesign\\LaravelCoupon\\LaravelCouponServiceProvider"
+                "Ricadesign\\LaravelCoupon\\LaravelCouponServiceProvider"
             ]
         }
     },

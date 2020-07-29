@@ -1,6 +1,6 @@
 <?php
 
-namespace RicaDesign\LaravelCoupon;
+namespace Ricadesign\LaravelCoupon;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;

@@ -1,6 +1,6 @@
 <?php
 
-namespace RicaDesign\LaravelCoupon;
+namespace Ricadesign\LaravelCoupon;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class LaravelCouponServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('RicaDesign\LaravelCoupon\CouponController');
+        $this->app->make('Ricadesign\LaravelCoupon\CouponController');
     }
 
     /**
