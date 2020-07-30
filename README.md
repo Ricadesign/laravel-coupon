@@ -41,4 +41,5 @@ The RicaDesign\LaravelCoupon\Coupon model also provides the following methods:
 | Method | Params | Returns | Description |
 | --- | --- | --- | --- |
 | static findAndValidate | couponCode, subtotal, itemsCount | A valid coupon model or null |
+| getDiscount | subtotal | Amount to be subtracted from subtotal (positive) |
 | use | userId | void | Increments times_used field, adds entry to user_coupon table (if needed) |
