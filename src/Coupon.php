@@ -65,7 +65,7 @@ class Coupon extends Model
         }
     }
 
-    public function use($userId)
+    public function use($userId = null)
     {
         $this->times_used += 1;
         $this->save();
