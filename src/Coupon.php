@@ -38,13 +38,17 @@ class Coupon extends Model
 
     private function validLimitNumber()
     {
-        return ! $this->limit_number || $this->times_used <= $this->limit_number;
+        return ! $this->limit_number || $this->times_used < $this->limit_number;
     }
 
     public function validLimitUser()
     {
+        if (! $this->limit_user) {
+            return true;
+        }
+
         $couponUsed = DB::table('user_coupon')->where('coupon_id', $this->id)->where('user_id', Auth::user()->id)->first();
-        return ! $this->limit_user || ! $couponUsed;
+        return ! $couponUsed;
     }
 
     public function isApplicable($total, $itemsCount)
