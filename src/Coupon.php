@@ -88,4 +88,8 @@ class Coupon extends Model
                 return 0;
         }
     }
+    public function redemptions()
+    {
+        $this->hasMany(Redemption::class);
+    }
 }
