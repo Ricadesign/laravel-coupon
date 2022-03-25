@@ -15,7 +15,7 @@ class CreateRedemptionsTable extends Migration
     {
         Schema::create('redemptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("code_id");
+            $table->foreignId("coupon_id");
             $table->string('code_name');
             $table->string('email');
             $table->timestamps();

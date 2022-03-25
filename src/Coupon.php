@@ -90,6 +90,6 @@ class Coupon extends Model
     }
     public function redemptions()
     {
-        $this->hasMany(Redemption::class);
+        return $this->hasMany(Redemption::class);
     }
 }
