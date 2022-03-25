@@ -97,18 +97,21 @@ class Coupon extends Model
         $isValid = false;
 
         switch ($typeProduct) {
-            case 'experiences':
+            case 'experience':
                 $column = 'experience_type';
+                $table = 'experiences';
                 break;
-            case 'getaways':
+            case 'getaway':
                 $column = 'getaway_type';
+                $table = 'getaways';
                 break;
-            case 'trips':
+            case 'trip':
                 $column = 'trip_type';
+                $table = 'trips';
                 break;
         }
 
-        $isValid = DB::table($typeProduct)->where($column, $typeCoupon)->get();
+        $isValid = DB::table($table)->where($column, $typeCoupon)->get();
         return $isValid;
     }
 }
