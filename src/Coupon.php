@@ -92,26 +92,8 @@ class Coupon extends Model
     {
         return $this->hasMany(Redemption::class);
     }
-    public function validProductType($typeProduct, $typeCoupon){
-
-        $isValid = false;
-
-        switch ($typeProduct) {
-            case 'experience':
-                $column = 'experience_type';
-                $table = 'experiences';
-                break;
-            case 'getaway':
-                $column = 'getaway_type';
-                $table = 'getaways';
-                break;
-            case 'trip':
-                $column = 'trip_type';
-                $table = 'trips';
-                break;
-        }
-
-        $isValid = DB::table($table)->where($column, $typeCoupon)->get();
-        return $isValid;
+    public function validProductType($table, $typeCoupon)
+    {
+        return (DB::table($table)->where('id', $typeCoupon)->get()) ? true : false;
     }
 }
