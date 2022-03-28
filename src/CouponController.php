@@ -31,7 +31,7 @@ class CouponController extends Controller
                 if($idCoupon != $productId || !str_contains($table, $typeCoupon) || !$coupon->validProductType($table, $idCoupon)) return response()->json(['error' => 'This coupon is invalid for this product'], 402);
             }
 
-            if(config('laravel-coupon.min_duration') && ($coupon->min_duration > $request->duration && $coupon->min_duration !== 0)) return response()->json(['error' => 'Minimum days to apply'], 404);
+            if(config('laravel-coupon.min_duration') && ($coupon->min_duration > $request->duration && $coupon->min_duration != 0)) return response()->json(['error' => 'Minimum days to apply'], 404);
 
             return $coupon->only(['code_name', 'requirements', 'type', 'value_discount', 'req_qty']);
         }
