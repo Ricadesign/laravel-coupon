@@ -12,7 +12,6 @@ class CouponController extends Controller
 
         if(!$email && config('laravel-coupon.unique_email')) return response()->json(['error' => 'Email required'], 400);
         $coupon = Coupon::where('code_name', $request->discount)->first();
-
         if ($coupon && $coupon->isValid) {
             if(config('laravel-coupon.unique_email')){
                 $redemption = $coupon->redemptions()->where('email', $email)->first();
@@ -28,11 +27,11 @@ class CouponController extends Controller
                 $table = $request->table;
                 $productId = $request->productId;
 
-                if($idCoupon != $productId || !str_contains($table, $typeCoupon) || !$coupon->validProductType($table, $idCoupon)) return response()->json(['error' => 'This coupon is invalid for this product'], 402);
+                if($idCoupon == $productId && str_contains($table, $typeCoupon) && $coupon->validProductType($table, $idCoupon)) return $coupon->only(['code_name', 'requirements', 'type', 'value_discount', 'req_qty', 'productable_id' ,'productable_type']);
+
+                return response()->json(['error' => 'This coupon is invalid for this product'], 402);
+
             }
-
-            if(config('laravel-coupon.min_duration') && ($coupon->min_duration > $request->duration && $coupon->min_duration !== 0)) return response()->json(['error' => 'Minimum days to apply'], 404);
-
             return $coupon->only(['code_name', 'requirements', 'type', 'value_discount', 'req_qty']);
         }
         return response()->json(['error' => 'Invalid code'], 404);
