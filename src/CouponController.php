@@ -24,7 +24,7 @@ class CouponController extends Controller
             if(config('laravel-coupon.coupon_for_product')){
                 // Check si el cupón pertenece al producto que esta reservando
                 $idCoupon = $coupon->productable_id;
-                $typeCoupon = explode('\\',strtolower($coupon->productable_type))[1];
+                $typeCoupon = explode(':',strtolower($coupon->productable_type))[0];
                 $table = $request->table;
                 $productId = $request->productId;
 
