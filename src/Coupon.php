@@ -92,4 +92,8 @@ class Coupon extends Model
     {
         return $this->hasMany(Redemption::class);
     }
+    public function validProductType($table, $typeCoupon)
+    {
+        return (DB::table($table)->where('id', $typeCoupon)->get()) ? true : false;
+    }
 }
