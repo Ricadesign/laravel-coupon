@@ -31,7 +31,7 @@ class CouponController extends Controller
 
             }
 
-            if(config('laravel-coupon.min_duration') && ($coupon->min_type !== 'duration' || $coupon->min_value > $request->duration && $coupon->min_value != 0)) {
+            if(config('laravel-coupon.min_duration') && ($coupon->min_type !== $request->type || $coupon->min_value > $request->value && $coupon->min_value != 0)) {
                 return response()->json(['error' => 'Minimum duration to apply'], 404);
             }
 
