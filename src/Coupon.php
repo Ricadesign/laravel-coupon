@@ -11,9 +11,20 @@ class Coupon extends Model
 {
     protected $appends = ['is_valid'];
 
-    public static function findAndValidate($couponCode, $subtotal, $itemsCount)
+    public static function findAndValidate($couponCode, $subtotal, $itemsCount, $info)
     {
         $coupon = self::where('code_name', $couponCode)->first();
+
+        // Validate if product and time is correct
+        if(config('laravel-coupon.coupon_for_product')){
+            if(($info[0] !== strtolower(explode(':', $coupon->couponable_type)[0])) || ($info[1]['id'] !== $coupon->couponable_id)){
+                return null;
+            }
+        }
+
+        if(config('laravel-coupon.min_duration') && ($coupon->min_type !== 'duration' || $coupon->min_value > $info[1]['duration'] && $coupon->min_value != 0)) {
+            return null;
+        }
 
         if ($coupon && $coupon->isApplicable($subtotal, $itemsCount)) {
             return $coupon;
