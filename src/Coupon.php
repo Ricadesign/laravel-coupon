@@ -17,12 +17,12 @@ class Coupon extends Model
 
         // Validate if product and time is correct
         if(config('laravel-coupon.coupon_for_product')){
-            if(($info[0] !== strtolower(explode(':', $coupon->couponable_type)[0])) || ($info[1]['id'] !== $coupon->couponable_id)){
+            if(($info['coupon_type'] !== strtolower(explode(':', $coupon->couponable_type)[0])) || ($info['reservation']['id'] !== $coupon->couponable_id)){
                 return null;
             }
         }
 
-        if(config('laravel-coupon.min_duration') && ($coupon->min_type !== 'duration' || $coupon->min_value > $info[1]['duration'] && $coupon->min_value != 0)) {
+        if(config('laravel-coupon.min_duration') && ($coupon->min_type !== $info['min_type'] || $coupon->min_value > $info['reservation']['duration'] && $coupon->min_value != 0 && $coupon->min_value != null)) {
             return null;
         }
 
