@@ -10,13 +10,16 @@ class Coupon extends Model
     public static function findAndValidate($couponCode, $subtotal, $itemsCount, $coupon_type = null, $min_type = null, $reservation = null)
     {
         $coupon = self::where('code_name', $couponCode)->first();
+        if(!$coupon){
+            return null;
+        }
         // Validate if product and time is correct
-        if(isset($coupon->couponable_type) && config('laravel-coupon.coupon_for_product')){
-            if(($coupon_type !== strtolower(explode(':', $coupon->couponable_type)[0])) || ($reservation['id'] !== $coupon->couponable_id)){
+        if(config('laravel-coupon.coupon_for_product')){
+            if(($coupon_type !== strtolower(explode(':', $coupon?->couponable_type)[0])) || ($reservation['id'] !== $coupon->couponable_id)){
                 return null;
             }
         }
-        if(isset($coupon->min_type) && config('laravel-coupon.min_type') && ($coupon->min_type !== $min_type || $coupon->min_value > $reservation['duration'] && $coupon->min_value != 0 && $coupon->min_value != null)) {
+        if(config('laravel-coupon.min_type') && ($coupon->min_type !== $min_type || $coupon->min_value > $reservation['duration'] && $coupon->min_value != 0 && $coupon->min_value != null)) {
             return null;
         }
         if ($coupon && $coupon->isApplicable($subtotal, $itemsCount)) {
