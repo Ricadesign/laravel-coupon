@@ -20,7 +20,7 @@ class CouponController extends Controller
 
             if((!$request->table || !$request->productId) && config('laravel-coupon.coupon_for_product')) return response()->json(['error' => 'Product ID required'], 400);
 
-            if(config('laravel-coupon.coupon_for_product')){
+            if(config('laravel-coupon.coupon_for_product') && $coupon->couponable_type && $coupon->couponable_id){
                 // Check si el cupón pertenece al producto que esta reservando
                 $idCoupon = $coupon->couponable_id;
                 $typeCoupon = explode(':',strtolower($coupon->couponable_type))[0];

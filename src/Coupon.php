@@ -14,7 +14,7 @@ class Coupon extends Model
             return null;
         }
         // Validate if product and time is correct
-        if(config('laravel-coupon.coupon_for_product')){
+        if(config('laravel-coupon.coupon_for_product') && $coupon->couponable_type && $coupon->couponable_id){
             if(($coupon_type !== strtolower(explode(':', $coupon?->couponable_type)[0])) || ($reservation['id'] !== $coupon->couponable_id)){
                 return null;
             }
