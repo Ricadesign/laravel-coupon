@@ -28,10 +28,10 @@ class CreateCouponsTable extends Migration
             $table->integer('times_used')->default(0);
             $table->float('discount')->default(0);
             $table->unsignedBigInteger('coupon_id')->nullable()->default(null);
-            $table->unsignedBigInteger('couponable_id');
-            $table->string('couponable_type');
+            $table->unsignedBigInteger('couponable_id')->nullable()->default(null);
+            $table->string('couponable_type')->nullable()->default(null);
             $table->string('min_type')->nullable()->default(null);
-            $table->integer('min_value')->default(0);
+            $table->integer('min_value')->nullable()->default(null);
             $table->timestamps();
         });
     }
