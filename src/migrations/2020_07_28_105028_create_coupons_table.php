@@ -26,7 +26,6 @@ class CreateCouponsTable extends Migration
             $table->timestamp('end_date')->nullable();
             $table->boolean('active')->default(true);
             $table->integer('times_used')->default(0);
-            $table->float('discount')->default(0);
             $table->unsignedBigInteger('coupon_id')->nullable()->default(null);
             $table->unsignedBigInteger('couponable_id');
             $table->string('couponable_type');
