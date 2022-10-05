@@ -49,3 +49,4 @@ The RicaDesign\LaravelCoupon\Coupon model also provides the following methods:
 | Property | Description 
 | --- | --- | 
 | value_discount | Value to discount in coupon type  FixPrice |
+| code_name | Codigo de descuento |
