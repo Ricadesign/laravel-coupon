@@ -19,7 +19,7 @@ class Coupon extends Model
                 return null;
             }
         }
-        if(config('laravel-coupon.min_type') && ($coupon->min_type !== $min_type || $coupon->min_value > $reservation['duration'] && $coupon->min_value != 0 && $coupon->min_value != null)) {
+        if(config('laravel-coupon.min_type') && isset($reservation['duration']) && ($coupon->min_type !== $min_type || $coupon->min_value > $reservation['duration'] && $coupon->min_value != 0 && $coupon->min_value != null)) {
             return null;
         }
         if ($coupon && $coupon->isApplicable($subtotal, $itemsCount)) {
