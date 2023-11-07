@@ -11,7 +11,7 @@ class CouponController extends Controller
         $email= $request->email;
 
         if(!$email && config('laravel-coupon.unique_email')) return response()->json(['error' => 'Email required'], 400);
-        $coupon = Coupon::where('code_name', $request->discount)->first();
+        $coupon = Coupon::where('code_name', $request->discount)->where('couponable_id', $request->productId)->where('couponable_type', $request->table)->first();
         if ($coupon && $coupon->isValid) {
             if(config('laravel-coupon.unique_email')){
                 $redemption = $coupon->redemptions()->where('email', $email)->first();

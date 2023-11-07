@@ -9,7 +9,9 @@ class Coupon extends Model
     protected $appends = ['is_valid'];
     public static function findAndValidate($couponCode, $subtotal, $itemsCount, $coupon_type = null, $min_type = null, $reservation = null)
     {
-        $coupon = self::where('code_name', $couponCode)->first();
+        //FLAPPIN CODE
+        $coupon = self::where('code_name', $couponCode)->where('couponable_id', $reservation['id'])->where('couponable_type', $reservation['type_for_coupon'])->first();
+        //
         if(!$coupon){
             return null;
         }
