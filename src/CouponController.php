@@ -13,11 +13,6 @@ class CouponController extends Controller
         if(!$email && config('laravel-coupon.unique_email')) return response()->json(['error' => 'Email required'], 400);
         $coupon = Coupon::where('code_name', $request->discount)->first();
         if ($coupon && $coupon->isValid) {
-
-            if(config('laravel-coupon.open_refund')){
-                if($coupon->type != 'fixprice') return response()->json(['error' => 'This coupon is not valid'], 400);
-            }
-            
             if(config('laravel-coupon.unique_email')){
                 $redemption = $coupon->redemptions()->where('email', $email)->first();
                 if($redemption) return response()->json(['error' => 'Coupon already redeemed'], 401);
